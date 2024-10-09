@@ -1,16 +1,16 @@
 {
   "files": {
-    "main.css": "/static/css/main.90458ada.css",
-    "main.js": "/static/js/main.f605e719.js",
-    "static/js/453.c61a3616.chunk.js": "/static/js/453.c61a3616.chunk.js",
-    "static/media/food-club.svg": "/static/media/food-club.0bcc44a755f8d9f293bb69e5c51232a8.svg",
-    "index.html": "/index.html",
-    "main.90458ada.css.map": "/static/css/main.90458ada.css.map",
-    "main.f605e719.js.map": "/static/js/main.f605e719.js.map",
-    "453.c61a3616.chunk.js.map": "/static/js/453.c61a3616.chunk.js.map"
+    "main.css": "/food-club/static/css/main.90458ada.css",
+    "main.js": "/food-club/static/js/main.00e23b5e.js",
+    "static/js/453.c61a3616.chunk.js": "/food-club/static/js/453.c61a3616.chunk.js",
+    "static/media/food-club.svg": "/food-club/static/media/food-club.0bcc44a755f8d9f293bb69e5c51232a8.svg",
+    "index.html": "/food-club/index.html",
+    "main.90458ada.css.map": "/food-club/static/css/main.90458ada.css.map",
+    "main.00e23b5e.js.map": "/food-club/static/js/main.00e23b5e.js.map",
+    "453.c61a3616.chunk.js.map": "/food-club/static/js/453.c61a3616.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.90458ada.css",
-    "static/js/main.f605e719.js"
+    "static/js/main.00e23b5e.js"
   ]
 }
