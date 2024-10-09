@@ -1,0 +1,30 @@
+.week-container {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  background: rgb(255, 183, 0);
+  user-select: none;
+  border-radius: 15px;
+  box-shadow: 4px 3px 7px 0px black;
+  cursor: pointer;
+  .title {
+    font-size: 40px;
+    font-weight: bold;
+  }
+  .week-body-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: rgb(255, 213, 108);
+    border-radius: 0px 0px 15px 15px;
+    .theme {
+      padding-bottom: 5px;
+    }
+    .date_span {
+      padding: 0px 10px 10px 10px;
+    }
+  }
+  &:hover {
+    filter: brightness(0.9);
+  }
+}

@@ -1,0 +1,36 @@
+Pages
+------
+SignIn / SignUp
+Home Screen
+Food Theme Suggestions
+All Food Submissions
+Your Submissions
+
+
+Components
+----------
+button
+submission-card
+sign-in-form
+sign-up-form
+form-input
+
+
+Context
+--------
+user
+submissions
+
+
+Routes
+-------
+authentication
+home
+week/x
+submission
+my-page
+
+
+Database
+--------
+firebase
