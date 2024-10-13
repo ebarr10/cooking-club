@@ -1,3 +1,5 @@
+$mobile: 480px;
+
 .week-container {
   display: flex;
   align-items: center;
@@ -17,6 +19,7 @@
     align-items: center;
     background: rgb(255, 213, 108);
     border-radius: 0px 0px 15px 15px;
+    width: 100%;
     .theme {
       padding-bottom: 5px;
     }
@@ -26,5 +29,18 @@
   }
   &:hover {
     filter: brightness(0.9);
+  }
+  @media only screen and (max-width: $mobile) {
+    .title {
+      font-size: 25px;
+    }
+    .week-body-container {
+      font-size: 10px;
+      .date_span {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+    }
   }
 }

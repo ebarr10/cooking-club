@@ -1,0 +1,44 @@
+$mobile: 480px;
+$mobile-sideways: 900px;
+$tablet: 1400px;
+
+.week-card-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  .week-title {
+    font-size: 50px;
+    font-weight: 1000;
+  }
+}
+
+.upload-button {
+  position: fixed;
+  bottom: 20px;
+}
+
+.card-items {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  justify-items: center;
+  padding-bottom: 40px;
+  .card {
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+  }
+
+  .recipe-img {
+    width: 300px;
+    height: 300px;
+  }
+  @media only screen and (max-width: $tablet) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  @media only screen and (max-width: $mobile-sideways) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  @media only screen and (max-width: $mobile) {
+    grid-template-columns: repeat(1, 1fr);
+  }
+}

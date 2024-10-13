@@ -1,13 +1,19 @@
+import { useNavigate } from "react-router-dom";
 import "./week-item.styles.scss";
 /** id: 1,
-      theme: "Chicken",
-      start_date: "01-01-2000",
-      end_date: "01-07-2000", */
+    theme: "Chicken",
+    start_date: "01-01-2000",
+    end_date: "01-07-2000", */
 function WeekItem({ week }) {
   const { id, theme, start_date, end_date } = week;
+  const navigate = useNavigate();
+
+  function goToWeekHandler() {
+    navigate(`/week/${id}`);
+  }
 
   return (
-    <div className="week-container">
+    <div className="week-container" onClick={goToWeekHandler}>
       <div className="title">Week {id}</div>
       <div className="week-body-container">
         <div className="theme">

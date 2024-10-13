@@ -1,5 +1,4 @@
 import WeekItem from "../week-item/week-item.component";
-
 import "./directory.styles.scss";
 
 function Directory({ weeks }) {
