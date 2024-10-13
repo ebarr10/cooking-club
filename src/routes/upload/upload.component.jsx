@@ -1,5 +1,9 @@
 import { useState, useRef } from "react";
 import { useParams, useNavigate } from "react-router-dom";
+import {
+  uploadImage,
+  addCollectionAndDocument,
+} from "../../utils/firebase/firebase.utils";
 import FormInput from "../../components/form-input/form-input.component";
 import Button from "../../components/button/button.component";
 import "./upload.styles.scss";
@@ -16,6 +20,7 @@ function Upload() {
   const [formFields, setFormFields] = useState(defaultFormFields);
   const { title, name } = formFields;
   const [file, setFile] = useState(null);
+  const [uploading, setUploading] = useState(false);
   const formRef = useRef(null);
   const [errorMessage, setErrorMessage] = useState(null);
 
@@ -45,12 +50,33 @@ function Upload() {
     }
   }
 
-  function handleSubmit(event) {
+  async function handleSubmit(event) {
     event.preventDefault();
-    console.log("submitting");
 
-    // Navigate back to week/:id + clear input
-    resetFormFields();
+    setUploading(true);
+    try {
+      // Upload Image
+      const downloadUrl = await uploadImage(file);
+
+      // Create new Entry
+      const newEntry = {
+        timestamp: new Date(),
+        week: id,
+        title: title,
+        img: downloadUrl,
+        user: name,
+      };
+
+      // Upload new Entry into Firestore
+      await addCollectionAndDocument("food", newEntry);
+
+      // Navigate back to week/:id + clear input
+      resetFormFields();
+    } catch {
+      setErrorMessage("Failed to upload file or save data");
+    } finally {
+      setUploading(false);
+    }
   }
 
   function handleChange(event) {
@@ -90,11 +116,13 @@ function Upload() {
             value={name}
           />
 
-          <div className="buttons-container">
-            <Button type="submit">Upload</Button>
+          <div className="buttons-container" disabled={uploading}>
+            <Button type="submit">
+              {uploading ? "Uploading..." : "Upload"}
+            </Button>
           </div>
+          {errorMessage && <p style={{ color: "red" }}>{errorMessage}</p>}
         </form>
-        {errorMessage && <p style={{ color: "red" }}>{errorMessage}</p>}
       </div>
     </div>
   );

@@ -25,9 +25,7 @@ function Week() {
               alt={`${upload.title}`}
               className="recipe-img"
             />
-            <span>
-              Recipe: <a href={upload.url}>{upload.title}</a>
-            </span>
+            <span>Recipe: {upload.title}</span>
             <span>Uploader: {upload.user}</span>
           </div>
         ))}
