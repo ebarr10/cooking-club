@@ -38,7 +38,9 @@ function Upload() {
       } else {
         setFile(null);
         formRef.current.reset();
-        setErrorMessage("Please select a valid image file.");
+        setErrorMessage(
+          "Please select a valid image file. (jpg, jpeg, png, gif)"
+        );
       }
     }
   }
