@@ -1,3 +1,5 @@
+This is the inital design for the website
+
 Pages
 ------
 SignIn / SignUp

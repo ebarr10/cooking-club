@@ -9,7 +9,7 @@ function WeekItem({ week }) {
   const navigate = useNavigate();
 
   function goToWeekHandler() {
-    navigate(`/week/${id}`);
+    navigate(`/week/${id}/${theme}`);
   }
 
   return (

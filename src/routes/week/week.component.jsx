@@ -5,7 +5,7 @@ import { mock_data } from "./mock-data.component";
 import "./week.styles.scss";
 
 function Week() {
-  const { id } = useParams();
+  const { id, theme } = useParams();
   const navigate = useNavigate();
 
   function uploadHandler() {
@@ -14,7 +14,9 @@ function Week() {
 
   return (
     <div className="week-card-container">
-      <span className="week-title">Week {id}</span>
+      <span className="week-title">
+        Week {id}: {theme}
+      </span>
       <div className="card-items">
         {mock_data.map((upload) => (
           <div className="card" key={upload.id}>

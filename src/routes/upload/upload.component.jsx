@@ -64,7 +64,7 @@ function Upload() {
       <div className="upload-container">
         <form ref={formRef} onSubmit={handleSubmit}>
           <FormInput
-            label="Name of Meal"
+            label="Title of Meal"
             type="text"
             required
             onChange={handleChange}
@@ -82,7 +82,7 @@ function Upload() {
           />
 
           <FormInput
-            label="Who is Uploading"
+            label="Provide Your Name"
             type="text"
             required
             onChange={handleChange}
