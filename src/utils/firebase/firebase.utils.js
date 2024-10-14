@@ -6,6 +6,8 @@ import {
   getDocs,
   query,
   where,
+  enablePersistence,
+  CACHE_SIZE_UNLIMITED,
 } from "firebase/firestore";
 import { getAuth, signInAnonymously, onAuthStateChanged } from "firebase/auth";
 import { getStorage, ref, uploadBytes, getDownloadURL } from "firebase/storage";
@@ -15,13 +17,28 @@ import { firebaseConfig } from "./config";
 // Initialize Firebase
 const firebaseApp = initializeApp(firebaseConfig);
 
-// Initialize Offline Persistence
+// Edit Firebase Caching Size
 initializeFirestore(firebaseApp, {
-  experimentalForceLongPolling: true,
-  cacheSizeBytes: 1048576,
+  cacheSizeBytes: CACHE_SIZE_UNLIMITED,
 });
 
 export const db = getFirestore(firebaseApp);
+
+// Enable Offline Persistence
+enablePersistence(db)
+  .then(() => {
+    console.log("Offline persistence is enabled.");
+  })
+  .catch((err) => {
+    if (err.code === "failed-precondition") {
+      console.error(
+        "Persistence failed: only one tab can enable persistence at a time."
+      );
+    } else if (err.code === "unimplemented") {
+      console.error("Persistence is not available in this browser.");
+    }
+  });
+
 export const storage = getStorage(firebaseApp);
 const auth = getAuth();
 
