@@ -1,16 +1,16 @@
 {
   "files": {
-    "main.css": "/cooking-club/static/css/main.7c6609c7.css",
-    "main.js": "/cooking-club/static/js/main.52875023.js",
+    "main.css": "/cooking-club/static/css/main.4c461cf6.css",
+    "main.js": "/cooking-club/static/js/main.7a5c8301.js",
     "static/js/453.c61a3616.chunk.js": "/cooking-club/static/js/453.c61a3616.chunk.js",
     "static/media/food-club.svg": "/cooking-club/static/media/food-club.ab0d47df273003cf410387896cdfcd0c.svg",
     "index.html": "/cooking-club/index.html",
-    "main.7c6609c7.css.map": "/cooking-club/static/css/main.7c6609c7.css.map",
-    "main.52875023.js.map": "/cooking-club/static/js/main.52875023.js.map",
+    "main.4c461cf6.css.map": "/cooking-club/static/css/main.4c461cf6.css.map",
+    "main.7a5c8301.js.map": "/cooking-club/static/js/main.7a5c8301.js.map",
     "453.c61a3616.chunk.js.map": "/cooking-club/static/js/453.c61a3616.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.7c6609c7.css",
-    "static/js/main.52875023.js"
+    "static/css/main.4c461cf6.css",
+    "static/js/main.7a5c8301.js"
   ]
 }
