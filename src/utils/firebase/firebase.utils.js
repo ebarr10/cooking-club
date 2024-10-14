@@ -9,10 +9,17 @@ import {
 } from "firebase/firestore";
 import { getAuth, signInAnonymously, onAuthStateChanged } from "firebase/auth";
 import { getStorage, ref, uploadBytes, getDownloadURL } from "firebase/storage";
+import { initializeFirestore } from "firebase/firestore";
 import { firebaseConfig } from "./config";
 
 // Initialize Firebase
 const firebaseApp = initializeApp(firebaseConfig);
+
+// Initialize Offline Persistence
+initializeFirestore(firebaseApp, {
+  experimentalForceLongPolling: true,
+  cacheSizeBytes: 1048576,
+});
 
 export const db = getFirestore(firebaseApp);
 export const storage = getStorage(firebaseApp);
