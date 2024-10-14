@@ -11,10 +11,12 @@ export const UserProvider = ({ children }) => {
   const value = { currentUser, setCurrentUser };
 
   useEffect(() => {
-    const unsubscribe = anonymousSignIn((user) => {
-      setCurrentUser(user);
-    });
-    return unsubscribe;
+    const signInAnon = async () => {
+      anonymousSignIn((user) => {
+        setCurrentUser(user);
+      });
+    };
+    signInAnon();
   }, []);
 
   return <UserContext.Provider value={value}>{children}</UserContext.Provider>;
