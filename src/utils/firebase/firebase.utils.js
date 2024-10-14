@@ -4,9 +4,10 @@ import {
   collection,
   addDoc,
   getDocs,
-  doc,
   query,
+  where,
 } from "firebase/firestore";
+import { getAuth, signInAnonymously, onAuthStateChanged } from "firebase/auth";
 import { getStorage, ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import { firebaseConfig } from "./config";
 
@@ -15,6 +16,14 @@ const firebaseApp = initializeApp(firebaseConfig);
 
 export const db = getFirestore(firebaseApp);
 export const storage = getStorage(firebaseApp);
+const auth = getAuth();
+
+export async function anonymousSignIn(callback) {
+  await signInAnonymously(auth).catch((error) => {
+    console.error("Error signing in anonymously: ", error);
+  });
+  return onAuthStateChanged(auth, callback);
+}
 
 export async function uploadImage(file) {
   const storageRef = ref(storage, file.name);
@@ -36,9 +45,14 @@ export async function addCollectionAndDocument(collectionKey, objectToAdd) {
   await addDoc(collectionRef, objectToAdd);
 }
 
-export async function getCollectionAndDocuments(collectionKey) {
+export async function getCollectionAndDocuments(collectionKey, weekId) {
   const collectionRef = collection(db, collectionKey);
-  const q = query(collectionRef);
+  let q;
+  if (weekId) {
+    q = query(collectionRef, where("week", "==", weekId));
+  } else {
+    q = query(collectionRef);
+  }
 
   const querySnapshot = await getDocs(q);
   const objectMapping = querySnapshot.docs.reduce((acc, docSnapshot) => {

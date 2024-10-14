@@ -11,7 +11,7 @@ function App() {
       <Route path="/" element={<Navigation />}>
         <Route index element={<Home />} />
         <Route path="/week/:id/:theme" element={<Week />} />
-        <Route path="/upload/:id" element={<Upload />} />
+        <Route path="/upload/:id/:theme" element={<Upload />} />
       </Route>
     </Routes>
   );

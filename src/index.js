@@ -2,6 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import { BrowserRouter } from "react-router-dom";
 import { WeeksProvider } from "./contexts/weeks.component";
+import { UserProvider } from "./contexts/user.component";
 import "./index.scss";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
@@ -10,9 +11,11 @@ const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
     <BrowserRouter basename={process.env.PUBLIC_URL}>
-      <WeeksProvider>
-        <App />
-      </WeeksProvider>
+      <UserProvider>
+        <WeeksProvider>
+          <App />
+        </WeeksProvider>
+      </UserProvider>
     </BrowserRouter>
   </React.StrictMode>
 );

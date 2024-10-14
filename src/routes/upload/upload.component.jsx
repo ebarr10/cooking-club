@@ -16,7 +16,7 @@ const defaultFormFields = {
 const acceptedFileTypes = ["image/jpg", "image/jpeg", "image/png", "image/gif"];
 
 function Upload() {
-  const { id } = useParams();
+  const { id, theme } = useParams();
   const [formFields, setFormFields] = useState(defaultFormFields);
   const { title, name } = formFields;
   const [file, setFile] = useState(null);
@@ -70,12 +70,14 @@ function Upload() {
       // Upload new Entry into Firestore
       await addCollectionAndDocument("food", newEntry);
 
-      // Navigate back to week/:id + clear input
       resetFormFields();
     } catch {
       setErrorMessage("Failed to upload file or save data");
     } finally {
       setUploading(false);
+
+      // Navigate back to week/:id/:theme + clear input
+      navigate(`/week/${id}/${theme}`);
     }
   }
 
@@ -86,7 +88,9 @@ function Upload() {
 
   return (
     <div>
-      <h1>Week {id} Upload</h1>
+      <span className="upload-title">
+        Week {id} Upload: <u>{theme}</u>
+      </span>
       <div className="upload-container">
         <form ref={formRef} onSubmit={handleSubmit}>
           <FormInput
