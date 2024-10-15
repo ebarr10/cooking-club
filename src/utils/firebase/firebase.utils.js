@@ -57,16 +57,9 @@ export async function addCollectionAndDocument(collectionKey, objectToAdd) {
 }
 
 export async function getCollectionAndDocuments(collectionKey) {
-  console.log("getCollectionAndDocuments: %s", collectionKey);
   const collectionRef = collection(db, collectionKey);
   let q = query(collectionRef);
   const querySnapshot = await getDocs(q);
-
-  if (querySnapshot.metadata.fromCache) {
-    console.log("Query data came from the local cache. ", collectionKey);
-  } else {
-    console.log("Query data came from the server. ", collectionKey);
-  }
   const objectMapping = querySnapshot.docs.reduce((acc, docSnapshot) => {
     acc.push(docSnapshot.data());
     return acc;
