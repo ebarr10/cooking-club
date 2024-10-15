@@ -5,10 +5,9 @@ import {
   addDoc,
   getDocs,
   query,
-  where,
-  enablePersistence,
-  CACHE_SIZE_UNLIMITED,
+  persistentLocalCache,
 } from "firebase/firestore";
+// import { getAnalytics } from "firebase/analytics";
 import { getAuth, signInAnonymously, onAuthStateChanged } from "firebase/auth";
 import { getStorage, ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import { initializeFirestore } from "firebase/firestore";
@@ -19,25 +18,13 @@ const firebaseApp = initializeApp(firebaseConfig);
 
 // Edit Firebase Caching Size
 initializeFirestore(firebaseApp, {
-  cacheSizeBytes: CACHE_SIZE_UNLIMITED,
+  localCache: persistentLocalCache(),
+  synchronizeTabs: true,
 });
 
-export const db = getFirestore(firebaseApp);
+// const analytics = getAnalytics(firebaseApp);
 
-// Enable Offline Persistence
-enablePersistence(db)
-  .then(() => {
-    console.log("Offline persistence is enabled.");
-  })
-  .catch((err) => {
-    if (err.code === "failed-precondition") {
-      console.error(
-        "Persistence failed: only one tab can enable persistence at a time."
-      );
-    } else if (err.code === "unimplemented") {
-      console.error("Persistence is not available in this browser.");
-    }
-  });
+export const db = getFirestore(firebaseApp);
 
 export const storage = getStorage(firebaseApp);
 const auth = getAuth();
@@ -69,16 +56,17 @@ export async function addCollectionAndDocument(collectionKey, objectToAdd) {
   await addDoc(collectionRef, objectToAdd);
 }
 
-export async function getCollectionAndDocuments(collectionKey, weekId) {
+export async function getCollectionAndDocuments(collectionKey) {
+  console.log("getCollectionAndDocuments: %s", collectionKey);
   const collectionRef = collection(db, collectionKey);
-  let q;
-  if (weekId) {
-    q = query(collectionRef, where("week", "==", weekId));
-  } else {
-    q = query(collectionRef);
-  }
-
+  let q = query(collectionRef);
   const querySnapshot = await getDocs(q);
+
+  if (querySnapshot.metadata.fromCache) {
+    console.log("Query data came from the local cache. ", collectionKey);
+  } else {
+    console.log("Query data came from the server. ", collectionKey);
+  }
   const objectMapping = querySnapshot.docs.reduce((acc, docSnapshot) => {
     acc.push(docSnapshot.data());
     return acc;

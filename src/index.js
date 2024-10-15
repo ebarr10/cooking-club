@@ -1,11 +1,12 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import { BrowserRouter } from "react-router-dom";
-import { WeeksProvider } from "./contexts/weeks.component";
-import { UserProvider } from "./contexts/user.component";
-import "./index.scss";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
+import { BrowserRouter } from "react-router-dom";
+import { WeeksProvider } from "./contexts/weeks.component";
+import { FoodProvider } from "./contexts/food.component";
+import { UserProvider } from "./contexts/user.component";
+import "./index.scss";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -13,7 +14,9 @@ root.render(
     <BrowserRouter basename={process.env.PUBLIC_URL}>
       <UserProvider>
         <WeeksProvider>
-          <App />
+          <FoodProvider>
+            <App />
+          </FoodProvider>
         </WeeksProvider>
       </UserProvider>
     </BrowserRouter>

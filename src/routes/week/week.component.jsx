@@ -1,23 +1,15 @@
-import { useState, useEffect } from "react";
+import { useContext } from "react";
 import { useParams, useNavigate } from "react-router-dom";
+import { FoodContext } from "../../contexts/food.component";
 import Button from "../../components/button/button.component";
 // import { mock_data } from "./mock-data.component";
 
 import "./week.styles.scss";
-import { getCollectionAndDocuments } from "../../utils/firebase/firebase.utils";
 
 function Week() {
   const { id, theme } = useParams();
-  const [foodMapping, setFoodMapping] = useState([]);
   const navigate = useNavigate();
-
-  useEffect(() => {
-    async function getWeeksFood() {
-      const foodMapping = await getCollectionAndDocuments("food", id);
-      setFoodMapping(foodMapping);
-    }
-    getWeeksFood();
-  });
+  const foodMapping = useContext(FoodContext);
 
   function uploadHandler() {
     navigate(`/upload/${id}/${theme}`);
@@ -29,21 +21,26 @@ function Week() {
         Week {id}: {theme}
       </span>
       <div className="card-items">
-        {foodMapping.map((upload) => (
-          <div className="card" key={upload.id}>
-            <img
-              src={upload.img}
-              alt={`${upload.title}`}
-              className="recipe-img"
-            />
-            <span>
-              Recipe: <b>{upload.title}</b>
-            </span>
-            <span>
-              Uploader: <b>{upload.user}</b>
-            </span>
-          </div>
-        ))}
+        {foodMapping["foodMapping"].map((upload, index) => {
+          if (upload.week === id) {
+            return (
+              <div className="card" key={index}>
+                <img
+                  src={upload.img}
+                  alt={`${upload.title}`}
+                  className="recipe-img"
+                />
+                <span>
+                  Recipe: <b>{upload.title}</b>
+                </span>
+                <span>
+                  Uploader: <b>{upload.user}</b>
+                </span>
+              </div>
+            );
+          }
+          return null;
+        })}
       </div>
       <div className="upload-button">
         <Button type="submit" onClick={uploadHandler}>
