@@ -6,6 +6,7 @@ import {
   getDocs,
   query,
   persistentLocalCache,
+  CACHE_SIZE_UNLIMITED,
 } from "firebase/firestore";
 // import { getAnalytics } from "firebase/analytics";
 import { getAuth, signInAnonymously, onAuthStateChanged } from "firebase/auth";
@@ -19,7 +20,9 @@ const firebaseApp = initializeApp(firebaseConfig);
 // Edit Firebase Caching Size
 initializeFirestore(firebaseApp, {
   localCache: persistentLocalCache(),
+  experimentalForceLongPolling: true,
   synchronizeTabs: true,
+  cacheSize: CACHE_SIZE_UNLIMITED,
 });
 
 // const analytics = getAnalytics(firebaseApp);

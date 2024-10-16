@@ -4,12 +4,16 @@ import { WeeksContext } from "../../contexts/weeks.component";
 import Directory from "../../components/directory/directory.component";
 
 function Home() {
-  const weeksMapping = useContext(WeeksContext);
-
+  const weeks = useContext(WeeksContext);
+  console.log(weeks.weeksMapping.length);
   return (
     <div>
       <Outlet />
-      <Directory weeks={weeksMapping} />
+      {weeks.weeksMapping.length > 0 ? (
+        <Directory weeks={weeks} />
+      ) : (
+        <h1>Loading ...</h1>
+      )}
     </div>
   );
 }

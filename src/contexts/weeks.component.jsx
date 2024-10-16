@@ -14,7 +14,7 @@ export const WeeksProvider = React.memo(({ children }) => {
       const weeksMap = await getCollectionAndDocuments("weeks");
       setWeeksMapping(weeksMap);
     }
-    return getWeeks;
+    getWeeks();
   }, []);
 
   const value = { weeksMapping };

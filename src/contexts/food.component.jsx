@@ -10,11 +10,11 @@ export const FoodProvider = React.memo(({ children }) => {
   const [foodMapping, setFoodMapping] = useState([]);
 
   useEffect(() => {
-    async function getWeeksFood() {
+    async function getFood() {
       const foodMapping = await getCollectionAndDocuments("food");
       setFoodMapping(foodMapping);
     }
-    return getWeeksFood;
+    getFood();
   }, []);
 
   const value = { foodMapping };
