@@ -8,7 +8,6 @@ import {
   persistentLocalCache,
   CACHE_SIZE_UNLIMITED,
 } from "firebase/firestore";
-// import { getAnalytics } from "firebase/analytics";
 import { getAuth, signInAnonymously, onAuthStateChanged } from "firebase/auth";
 import { getStorage, ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import { initializeFirestore } from "firebase/firestore";
@@ -24,8 +23,6 @@ initializeFirestore(firebaseApp, {
   synchronizeTabs: true,
   cacheSize: CACHE_SIZE_UNLIMITED,
 });
-
-// const analytics = getAnalytics(firebaseApp);
 
 export const db = getFirestore(firebaseApp);
 
