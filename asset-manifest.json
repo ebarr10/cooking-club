@@ -1,16 +1,16 @@
 {
   "files": {
     "main.css": "/cooking-club/static/css/main.831c317b.css",
-    "main.js": "/cooking-club/static/js/main.6a5722bc.js",
+    "main.js": "/cooking-club/static/js/main.10fee342.js",
     "static/js/453.c61a3616.chunk.js": "/cooking-club/static/js/453.c61a3616.chunk.js",
     "static/media/food-club.svg": "/cooking-club/static/media/food-club.ab0d47df273003cf410387896cdfcd0c.svg",
     "index.html": "/cooking-club/index.html",
     "main.831c317b.css.map": "/cooking-club/static/css/main.831c317b.css.map",
-    "main.6a5722bc.js.map": "/cooking-club/static/js/main.6a5722bc.js.map",
+    "main.10fee342.js.map": "/cooking-club/static/js/main.10fee342.js.map",
     "453.c61a3616.chunk.js.map": "/cooking-club/static/js/453.c61a3616.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.831c317b.css",
-    "static/js/main.6a5722bc.js"
+    "static/js/main.10fee342.js"
   ]
 }
