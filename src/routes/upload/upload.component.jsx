@@ -1,9 +1,10 @@
-import { useState, useRef } from "react";
+import { useState, useRef, useContext } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import {
   uploadImage,
   addCollectionAndDocument,
 } from "../../utils/firebase/firebase.utils";
+import { FoodContext } from "../../contexts/food.component";
 import FormInput from "../../components/form-input/form-input.component";
 import Button from "../../components/button/button.component";
 import "./upload.styles.scss";
@@ -17,6 +18,7 @@ const acceptedFileTypes = ["image/jpg", "image/jpeg", "image/png", "image/gif"];
 
 function Upload() {
   const { id, theme } = useParams();
+  const { setUploadedNewItem } = useContext(FoodContext);
   const [formFields, setFormFields] = useState(defaultFormFields);
   const { title, name } = formFields;
   const [file, setFile] = useState(null);
@@ -77,6 +79,7 @@ function Upload() {
       setUploading(false);
 
       // Navigate back to week/:id/:theme + clear input
+      setUploadedNewItem(true);
       navigate(`/week/${id}/${theme}`);
     }
   }

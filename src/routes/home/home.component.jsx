@@ -5,7 +5,6 @@ import Directory from "../../components/directory/directory.component";
 
 function Home() {
   const weeks = useContext(WeeksContext);
-  console.log(weeks.weeksMapping.length);
   return (
     <div>
       <Outlet />

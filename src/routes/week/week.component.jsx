@@ -2,7 +2,6 @@ import { useContext } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { FoodContext } from "../../contexts/food.component";
 import Button from "../../components/button/button.component";
-// import { mock_data } from "./mock-data.component";
 
 import "./week.styles.scss";
 

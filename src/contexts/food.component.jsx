@@ -4,19 +4,25 @@ import { getCollectionAndDocuments } from "../utils/firebase/firebase.utils";
 
 export const FoodContext = createContext({
   foodMapping: [],
+  uploadedNewItem: true,
 });
 
 export const FoodProvider = React.memo(({ children }) => {
   const [foodMapping, setFoodMapping] = useState([]);
+  const [uploadedNewItem, setUploadedNewItem] = useState(true);
 
   useEffect(() => {
-    async function getFood() {
-      const foodMapping = await getCollectionAndDocuments("food");
-      setFoodMapping(foodMapping);
+    if (uploadedNewItem) {
+      async function getFood() {
+        const foodMapping = await getCollectionAndDocuments("food");
+        setFoodMapping(foodMapping);
+      }
+      getFood();
+      setUploadedNewItem(false);
     }
-    getFood();
-  }, []);
+    return () => {};
+  }, [uploadedNewItem]);
 
-  const value = { foodMapping };
+  const value = { foodMapping, setUploadedNewItem };
   return <FoodContext.Provider value={value}>{children}</FoodContext.Provider>;
 });

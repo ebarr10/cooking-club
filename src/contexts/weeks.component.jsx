@@ -12,7 +12,8 @@ export const WeeksProvider = React.memo(({ children }) => {
   useEffect(() => {
     async function getWeeks() {
       const weeksMap = await getCollectionAndDocuments("weeks");
-      setWeeksMapping(weeksMap);
+      let sortedWeeksMap = weeksMap.sort((a, b) => a.id - b.id);
+      setWeeksMapping(sortedWeeksMap);
     }
     getWeeks();
   }, []);
